@@ -1,38 +1,40 @@
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
 
-sequence = input("Введіть амінокислотну послідовність:")
+sequence = input("Enter the amino acid sequence:")
 
-# Перетворення послідовності в об'єкт ProteinAnalysis
+# Converting a sequence to a ProteinAnalysis object
 protein = ProteinAnalysis(sequence)
 
-# Отримання кількості кожної амінокислоти в послідовності
+protein = ProteinAnalysis(sequence)
+
+# Get the amount of each amino acid in a sequence
 aa_composition = protein.count_amino_acids()
 
-# Отримання кількості катіонних амінокислот (R, H, K)
+# Obtaining the amount of cationic amino acids (R, H, K)
 cationic_aa = ['R', 'H', 'K']
 cationic_count = sum([aa_composition[aa] for aa in cationic_aa])
 
-# Отримання кількості ліпофільних амінокислот (F, I, L, A, M, V, Pro, T)
+# Obtaining the amount of lipophilic amino acids (F, I, L, A, M, V, Pro, T)
 hydrophobic_aa = ['F', 'I', 'L', 'A', 'M', 'V', 'P', 'T']
 hydrophobic_count = sum([aa_composition[aa] for aa in hydrophobic_aa])
 
-#отримання кількості інших амінокислот (G, Y, W, Q, E, N, D, S, C )
+# obtaining the amount of other amino acids (G, Y, W, Q, E, N, D, S, C)
 other_aa = ['G', 'Y', 'W', 'Q', 'E', 'N', 'D', 'S', 'C']
 other_count = sum([aa_composition[aa] for aa in other_aa])
 
-# Отримання загальної кількості амінокислот
+# Obtaining the total amount of amino acids
 total_count = sum(aa_composition.values())
 
-# Обчислення відсотків катіонних та ліпофільних амінокислот
+# Calculate percentages of cationic and lipophilic amino acids
 cationic_percentage = cationic_count / total_count * 100
 hydrophobic_percentage = hydrophobic_count / total_count * 100
 other_percentage = other_count / total_count * 100
 
-# Виведення результатів
-print("Кількість катіонних амінокислот: ", cationic_count)
-print("Кількість ліпофільних амінокислот: ", hydrophobic_count)
-print("Кількість інших амінокислот: ", other_count)
-print("Відсоток катіонних амінокислот: ", round(cationic_percentage, 2), "%")
-print("Відсоток ліпофільних амінокислот: ", round(hydrophobic_percentage, 2), "%")
-print("Відсоток інших амінокислот: ", round(other_percentage, 2), "%")
-print("Молекулярна маса:", "%0.2f" % protein.molecular_weight(), "G/mole")
+# Displaying the results
+print("Amount of cationic amino acids: ", cationic_count)
+print("Amount of lipophilic amino acids: ", hydrophobic_count)
+print("Amount of other amino acids: ", other_count)
+print("Percentage of cationic amino acids: ", round(cationic_percentage, 2), "%")
+print("Percentage of lipophilic amino acids: ", round(hydrophobic_percentage, 2), "%")
+print("Percentage of other amino acids: ", round(other_percentage, 2), "%")
+print("Molecular mass of peptide:", "%0.2f" % protein.molecular_weight(), "G/mole")
