@@ -1,26 +1,16 @@
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
 def main():
-    sequence = get_seq()
-    name = get_name()
+    sequence = input("Enter the amino acid sequence: ")
+    name = input("Enter the peptide name: ")
     aa_composition = convert(sequence)
     calculating_amount_aa(aa_composition)
     cationic, hydrophobic, other, total = calculating_amount_aa(aa_composition)
     calclulating_perc_aa(cationic, hydrophobic, other, total)
 
 
-# input the text and sequence
-def get_seq():
-    seq = input("Enter the amino acid sequence:")
-    return seq
-
-
-def get_name():
-    name = input("Enter the peptide name")
-    return name
-
-
 # Converting a sequence to a ProteinAnalysis object
 def convert(seq):
+    global protein
     protein = ProteinAnalysis(seq)
 
 # Get the amount of each amino acid in a sequence
@@ -48,6 +38,10 @@ def calclulating_perc_aa(cationic, hydrophobic, other, total):
     cationic_percentage = cationic / total * 100
     hydrophobic_percentage = hydrophobic/ total * 100
     other_percentage = other / total * 100
+    print("Percentage of cationic amino acids: ", round(cationic_percentage, 2), "%")
+    print("Percentage of lipophilic amino acids: ", round(hydrophobic_percentage, 2), "%")
+    print("Percentage of other amino acids: ", round(other_percentage, 2), "%")
+    print("Molecular mass of peptide:", "%0.2f" % protein.molecular_weight(), "G/mole")
 
-
-main()
+if __name__ == "__main__":
+    main()
